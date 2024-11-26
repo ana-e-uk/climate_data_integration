@@ -14,22 +14,61 @@ We hope to create a Python-based software to integrate climate science data.
 Unifying these various datasets can help scientists analyze a region or time range of interest with all the available data.
 
 **Data Integration Plan:** 
-1. *Best Practices:* Look into the climate science literature and determine the most common data format, grid, time range, variables, etc.. This will help us decide the framework to unify all datasets to.
-2. *Unify Data Format:* The first thing to do will be to unify all the data to the same format that will make it easy to work with and store.
-3. *Grid Data:* While some data is already gridded (def), data may use different grids, so all the data must be re-gridded to the same grid. Other data is not gridded, so it must be gridded or stored separately such that it is easy to use gridded and non-gridded data together.
-4. *Consolidate Time Resolution:* Datapoints may be taken at varying time intervals. Here we determine what to do when points coincide, and when they don't. This could include merging data points, deleting redundant data, or developing a way to keep all the information with varying time intervals between points.
-5. *Find Minimum Variable Set:* This is where we determine if the same variable has different names in different datasets. This is usually called column-matching. Datasets may have unique variables they measure, but there will be overlap as well. There exists a minimum set of variables where each element is a unique variable.
-6. *Find Duplicates:* Some records may hold the same measurement for the same variable. If the value is exactly the same, we can just keep one. If the values are not the same, we can calculate some statistics about the measurement to give a more accurate idea to scientists regarding the range of this value.
-7. *Manage Duplicates:* Provide various ways to handle duplicate data such as aggregating, deleting, etc..
-8. *Join Similar Data:* Data may not be the same but may be useful to have together, such as the u component of the wind and the v component of the wind.
-9. *Provide Metadata:* For the integrated data, provide useful metadata that keeps track of where data came from, the extent of information, aggregation methods, etc..
+0. *Best Practices:* Look into the climate science literature and determine the most common data format, grid, time range, variables, etc.. This will help us decide the framework to unify all datasets to. Thus, all the steps below are subject to change due to current best practices.
+1. *Unify Data Format:* The first thing to do will be to convert all incoming data to the same format.
+2. *Variable Matching:* Incoming datasets may have different names for the same variables (such as temp. for temperature etc.), so starting with a set of expected values, we will have a process that checks all the columns of incoming datasets and “column-matches” the values or adds a new value to the set if there is a new value.
+3. *Grid Data:* While some data is already [gridded](https://climateestimate.net/content/gridded-data.html#:~:text=These%20generally%20consist%20of%20combining,at%20each%20gridpoint%20and%20timestep.) (divided into latitude x longitude grid over the surface area of the Earth), data may use different grids, so all the data must be re-gridded to the same grid. Other data is not gridded, so it must be gridded or stored separately such that it is easy to use gridded and non-gridded data together.
+4. *Consolidate Temporal Resolution:* Datapoints may be taken at varying time intervals. Here we determine what to do when points coincide, and when they don't. This could include merging data points, deleting redundant data, or developing a way to keep all the information with varying time intervals between points.
+5. *Find Duplicates:* Some records may hold the same measurement for the same variable. If the value is exactly the same, we can just keep one. If the values are not the same, we can calculate some statistics about the measurement to give a more accurate idea to scientists regarding the range of this value.
+6. *Manage Duplicates:* Provide various ways to handle duplicate data such as aggregating, deleting, etc..
+7. *Join Similar Data:* Data may not be the same but may be useful to have together, such as the u component of the wind and the v component of the wind.
+8. *Provide Metadata:* For the integrated data, provide useful metadata that keeps track of where data came from, the extent of information, aggregation methods, etc..
 
-## Project Plan
+**More documentation on the data used, evaluation methods, and best practices in the `docs/` folder.**
 
-**Determining Unified Framework**
+## Repository Layout
 
-**Code Data Integration**
+project-root/
+├── data/
+│   ├── raw/                      # Store raw incoming data files
+│   ├── processed/                # Store processed data files
+│   └── metadata/                 # Store metadata files
+├── src/
+│   ├── pipeline.py               # Main pipeline function
+│   ├── unify_format.py           # Step 1 function of Data Integration Plan
+│   ├── variable_matching.py      # Step 2 function
+│   ├── regrid.py                 # Step 3 function
+│   ├── temporal_resolution.py    # Step 4 function
+│   ├── deduplicate.py            # Step 5 & 6 function
+│   ├── data_joining.py           # Step 7 function
+│   ├── metadata_generator.py     # Step 8 function
+│   └── utils.py                  # Common utilities
+├── notebooks/                    # Jupyter notebooks for testing and visualization
+├── tests/
+│   ├── test_unify_format.py
+│   ├── test_variable_matching.py
+│   ├── test_regrid.py
+│   ├── test_temporal_resolution.py
+│   ├── test_deduplicate.py
+│   ├── test_data_joining.py
+│   └── test_metadata_generator.py
+├── docs/
+│   ├── README.md                 # Overview of the project
+│   ├── CONTRIBUTING.md           # Guidelines for contributing
+│   ├── requirements.txt          # Dependencies
+│   ├── setup.md                  # Instructions to set up the environment
+│   └── API.md                    # Details about the API and CLI
+├── config/
+│   ├── variable_mapping.json     # Configuration for variable matching
+│   ├── grid_config.yaml          # Configuration for re-gridding
+│   ├── metadata_template.yaml    # Metadata structure template
+│   └── config.yaml               # General project configuration
+├── scripts/
+│   ├── run_pipeline.py           # Script to run the full data processing pipeline
+│   ├── preprocess_data.sh        # Example shell script for data preprocessing
+│   └── analyze_output.sh         # Example script for analyzing outputs
+└── .github/
+    ├── workflows/
+    │   └── ci.yml                # Continuous Integration workflow
+    └── ISSUE_TEMPLATE.md         # Template for GitHub issues
 
-**Evaluation**
-
-## Data
