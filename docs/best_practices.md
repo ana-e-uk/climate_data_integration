@@ -19,15 +19,26 @@ The following resources are to get an idea of the best practices of each of our 
 * U.S. Antarctic Program Data [Center]() documents, preserves, and disseminates data from Antarctica, which can be a good example for us in terms of documentation.
 
 ## Unifying Format
+**Data Format Options:** netcdf, Json, ...
+
+**Final Data Format:**
 
 ## Variable Matching
+**Common Variables:** temperature, percipitation, ...
+
+**Expected Variables Set:** 
 
 ## Regrid
+**Final Grid:**
 
 ## Temporal Resolution
+**Possible Temporal Resolutions:** Minutes, Hourly, Daily, Monthly, Yearly, 
 
 ## Data Deduplication
+**Current Practice:**
 
 ## Data Joining
+**Data to store together:**
+* U component of wind, V component of wind as tuple: `[u, v]`
 
 ## Dataset Metadata
