@@ -6,17 +6,17 @@ from src.deduplicate import find_duplicates, manage_duplicates
 from src.data_joining import join_similar_data
 from src.metadata_generator import generate_metadata
 
-def process_pipeline(input_data, config):
+def integration_pipeline(input_data, config):
     """
-    Orchestrates the data processing pipeline.
+    Orchestrates the data integration pipeline.
 
     Args:
-        input_data: The dataset to be processed (file path or in-memory object).
+        input_data: List of file path names of the datasets to be integrated.
         config: Configuration dictionary with settings for each step.
 
     Returns:
-        processed_data: Final processed dataset.
-        metadata: Metadata for the processed data.
+        integrated_data: Final integrated dataset.
+        metadata: Metadata for the integrated data.
     """
     # Step 1: Unify data format
     unified_data = unify_data_format(input_data, config.get("format"))

@@ -1,3 +1,7 @@
+"""
+Unifing all data to the same format.
+"""
+
 def unify_data_format(input_data, format_config):
     """
     Converts data to a unified format.
@@ -9,7 +13,7 @@ def unify_data_format(input_data, format_config):
     Returns:
         unified_data: Dataset in the unified format.
     """
-    # Example: If input is a CSV, convert to NetCDF
+    # If input is a CSV, convert to NetCDF
     if input_data.endswith(".csv"):
         unified_data = convert_csv_to_netcdf(input_data, format_config)
     elif input_data.endswith(".nc"):
