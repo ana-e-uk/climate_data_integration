@@ -24,7 +24,8 @@ Unifying these various datasets can help scientists analyze a region or time ran
 7. *Join Similar Data:* Data may not be the same but may be useful to have together, such as the u component of the wind and the v component of the wind.
 8. *Provide Metadata:* For the integrated data, provide useful metadata that keeps track of where data came from, the extent of information, aggregation methods, etc..
 
-**More documentation on the data used, evaluation methods, and best practices in the `docs/` folder.**
+---
+**More documentation on the data used, evaluation methods, and best practices in the `docs/` folder. Additionally, how to setup the environment, dependencies, guidelines for contributing, and detalis about the API and CLI are also in this folder.**
 
 ## Repository Layout
 
@@ -57,17 +58,20 @@ Unifying these various datasets can help scientists analyze a region or time ran
     │   ├── CONTRIBUTING.md           # Guidelines for contributing
     │   ├── requirements.txt          # Dependencies
     │   ├── setup.md                  # Instructions to set up the environment
-    │   └── API.md                    # Details about the API and CLI
+    │   ├── API.md                    # Details about the API and CLI
+    │   ├── best_practices.md                 # Description of each step
+    │   ├── data.md                 # Overview of the data used
+    │   └── evaluation.md                 # Description of the evaluation of each step
     ├── config/
     │   ├── variable_mapping.json     # Configuration for variable matching
     │   ├── grid_config.yaml          # Configuration for re-gridding
     │   ├── metadata_template.yaml    # Metadata structure template
     │   └── config.yaml               # General project configuration
     ├── scripts/
-    │   ├── run_pipeline.py           # Script to run the full data processing pipeline
+    │   ├── integrate_data.py           # Script to run the full data processing pipeline
     │   ├── preprocess_data.sh        # Example shell script for data preprocessing
     │   └── analyze_output.sh         # Example script for analyzing outputs
-    └── .github/
+    <!-- └── .github/
         ├── workflows/
         │   └── ci.yml                # Continuous Integration workflow
-        └── ISSUE_TEMPLATE.md         # Template for GitHub issues
+        └── ISSUE_TEMPLATE.md         # Template for GitHub issues -->
