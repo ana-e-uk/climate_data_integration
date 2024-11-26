@@ -28,47 +28,46 @@ Unifying these various datasets can help scientists analyze a region or time ran
 
 ## Repository Layout
 
-project-root/
-├── data/
-│   ├── raw/                      # Store raw incoming data files
-│   ├── processed/                # Store processed data files
-│   └── metadata/                 # Store metadata files
-├── src/
-│   ├── pipeline.py               # Main pipeline function
-│   ├── unify_format.py           # Step 1 function of Data Integration Plan
-│   ├── variable_matching.py      # Step 2 function
-│   ├── regrid.py                 # Step 3 function
-│   ├── temporal_resolution.py    # Step 4 function
-│   ├── deduplicate.py            # Step 5 & 6 function
-│   ├── data_joining.py           # Step 7 function
-│   ├── metadata_generator.py     # Step 8 function
-│   └── utils.py                  # Common utilities
-├── notebooks/                    # Jupyter notebooks for testing and visualization
-├── tests/
-│   ├── test_unify_format.py
-│   ├── test_variable_matching.py
-│   ├── test_regrid.py
-│   ├── test_temporal_resolution.py
-│   ├── test_deduplicate.py
-│   ├── test_data_joining.py
-│   └── test_metadata_generator.py
-├── docs/
-│   ├── README.md                 # Overview of the project
-│   ├── CONTRIBUTING.md           # Guidelines for contributing
-│   ├── requirements.txt          # Dependencies
-│   ├── setup.md                  # Instructions to set up the environment
-│   └── API.md                    # Details about the API and CLI
-├── config/
-│   ├── variable_mapping.json     # Configuration for variable matching
-│   ├── grid_config.yaml          # Configuration for re-gridding
-│   ├── metadata_template.yaml    # Metadata structure template
-│   └── config.yaml               # General project configuration
-├── scripts/
-│   ├── run_pipeline.py           # Script to run the full data processing pipeline
-│   ├── preprocess_data.sh        # Example shell script for data preprocessing
-│   └── analyze_output.sh         # Example script for analyzing outputs
-└── .github/
-    ├── workflows/
-    │   └── ci.yml                # Continuous Integration workflow
-    └── ISSUE_TEMPLATE.md         # Template for GitHub issues
-
+    project-root/
+    ├── data/
+    │   ├── raw/                      # Store raw incoming data files
+    │   ├── processed/                # Store processed data files
+    │   └── metadata/                 # Store metadata files
+    ├── src/
+    │   ├── pipeline.py               # Main pipeline function
+    │   ├── unify_format.py           # Step 1 function of Data Integration Plan
+    │   ├── variable_matching.py      # Step 2 function
+    │   ├── regrid.py                 # Step 3 function
+    │   ├── temporal_resolution.py    # Step 4 function
+    │   ├── deduplicate.py            # Step 5 & 6 function
+    │   ├── data_joining.py           # Step 7 function
+    │   ├── metadata_generator.py     # Step 8 function
+    │   └── utils.py                  # Common utilities
+    ├── notebooks/                    # Jupyter notebooks for testing and visualization
+    ├── tests/
+    │   ├── test_unify_format.py
+    │   ├── test_variable_matching.py
+    │   ├── test_regrid.py
+    │   ├── test_temporal_resolution.py
+    │   ├── test_deduplicate.py
+    │   ├── test_data_joining.py
+    │   └── test_metadata_generator.py
+    ├── docs/
+    │   ├── README.md                 # Overview of the project
+    │   ├── CONTRIBUTING.md           # Guidelines for contributing
+    │   ├── requirements.txt          # Dependencies
+    │   ├── setup.md                  # Instructions to set up the environment
+    │   └── API.md                    # Details about the API and CLI
+    ├── config/
+    │   ├── variable_mapping.json     # Configuration for variable matching
+    │   ├── grid_config.yaml          # Configuration for re-gridding
+    │   ├── metadata_template.yaml    # Metadata structure template
+    │   └── config.yaml               # General project configuration
+    ├── scripts/
+    │   ├── run_pipeline.py           # Script to run the full data processing pipeline
+    │   ├── preprocess_data.sh        # Example shell script for data preprocessing
+    │   └── analyze_output.sh         # Example script for analyzing outputs
+    └── .github/
+        ├── workflows/
+        │   └── ci.yml                # Continuous Integration workflow
+        └── ISSUE_TEMPLATE.md         # Template for GitHub issues
