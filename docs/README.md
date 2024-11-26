@@ -6,7 +6,6 @@ This repository contains Ana Uribe and Nithya Nurikinati's final project code an
 
 We hope to create a Python-based software to integrate climate science data.
 
-
 **Motivation:** Climate data is collected by different organizations ([NASA](https://science.nasa.gov/earth/), [ECMWF](https://www.ecmwf.int), etc.)and instruments such as satellites, so multiple entities could collect for a given spatial ($S$) and temporal range ($T$):
 * The exact same data at the same time and location within $S$ and $T$.
 * The exact same data at different time intervals and/or different locations within $S$ and $T$.
