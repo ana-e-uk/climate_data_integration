@@ -6,12 +6,12 @@ This repository contains Ana Uribe and Nithya Nurikinati's final project code an
 
 We hope to create a Python-based software to integrate climate science data.
 
-**Motivation:** Climate data is collected by different organizations and instruments such as satellites. For one region and time range, this could lead to:
-* The exact same data being collected at the same time intervals and spatial grid.
-* The exact same data being collected at different time intervals and/or different spatial grid.
-* Similar or related data being collected at the same or different spatial and/or temporal resolutions.
+**Motivation:** Climate data is collected by different organizations ([NASA](https://science.nasa.gov/earth/), [ECMWF](https://www.ecmwf.int), etc.)and instruments such as satellites, so multiple entities could collect for a given spatial ($S$) and temporal range ($T$):
+* The exact same data at the same time and location within $S$ and $T$.
+* The exact same data at different time intervals and/or different locations within $S$ and $T$.
+* Similar or related data at the same or different time and location within $S$ and $T$.
 
-Unifying these various datasets can help scientists analyze a region or time range of interest with all the available data. Many climate scientists are using various datasets, or 'multi-source' data, to answer specific questions or for training models to predict things like weather or sea-level temperature. Providing a pipeline that can do this integration will help streamline this process.
+Unifying these various datasets can help scientists analyze the region $S$ or time range $T$ of interest with all the available data. Many climate scientists are using various datasets, or 'multi-source' data, to answer specific questions or for training models to predict things like weather or sea-level temperature. Providing a pipeline that can do this integration will help streamline this process.
 
 Thus, given several datasets, our software will return integrated (unified) data and corresponding metadata.
 
