@@ -59,19 +59,20 @@ Unifying these various datasets can help scientists analyze a region or time ran
     │   ├── requirements.txt          # Dependencies
     │   ├── setup.md                  # Instructions to set up the environment
     │   ├── API.md                    # Details about the API and CLI
-    │   ├── best_practices.md                 # Description of each step
-    │   ├── data.md                 # Overview of the data used
-    │   └── evaluation.md                 # Description of the evaluation of each step
+    │   ├── best_practices.md         # Description of each step
+    │   ├── data.md                   # Overview of the data used
+    │   └── evaluation.md             # Description of the evaluation of each step
     ├── config/
     │   ├── variable_mapping.json     # Configuration for variable matching
     │   ├── grid_config.yaml          # Configuration for re-gridding
     │   ├── metadata_template.yaml    # Metadata structure template
     │   └── config.yaml               # General project configuration
     ├── scripts/
-    │   ├── integrate_data.py           # Script to run the full data processing pipeline
+    │   ├── integrate_data.py         # Script to run the full data processing pipeline
     │   ├── preprocess_data.sh        # Example shell script for data preprocessing
     │   └── analyze_output.sh         # Example script for analyzing outputs
-    <!-- └── .github/
+    └── .gitignore
+<!-- └── .github/
         ├── workflows/
         │   └── ci.yml                # Continuous Integration workflow
         └── ISSUE_TEMPLATE.md         # Template for GitHub issues -->
