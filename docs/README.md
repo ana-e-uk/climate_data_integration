@@ -11,7 +11,9 @@ We hope to create a Python-based software to integrate climate science data.
 * The exact same data being collected at different time intervals and/or different spatial grid.
 * Similar or related data being collected at the same or different spatial and/or temporal resolutions.
 
-Unifying these various datasets can help scientists analyze a region or time range of interest with all the available data.
+Unifying these various datasets can help scientists analyze a region or time range of interest with all the available data. Many climate scientists are using various datasets, or 'multi-source' data, to answer specific questions or for training models to predict things like weather or sea-level temperature. Providing a pipeline that can do this integration will help streamline this process.
+
+Thus, given several datasets, our software will return integrated (unified) data and corresponding metadata.
 
 **Data Integration Plan:** 
 0. *Best Practices:* Look into the climate science literature and determine the most common data format, grid, time range, variables, etc.. This will help us decide the framework to unify all datasets to. Thus, all the steps below are subject to change due to current best practices.
