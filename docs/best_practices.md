@@ -26,10 +26,48 @@ The following resources are to get an idea of the best practices of each of our 
 ## Variable Matching
 **Common Variables:** temperature, percipitation, ...
 
-**Expected Variables Set:** 
+**Expected Variables Set from Intergovernmental Panel on Climate Change Sixth Assesment:** 
+* Carbon dioxide ($CO_2$)
+* Methane ($CH_4$)
+* Nitrous oxide ($N_2O$)
+* Mean surface temperature
+* Snow cover
+* Well-mixed greenhouse gasses
+* Wind speed
+* Permafrost
+* Snowfall
+* Hail
+* Halogeneated gasses
+* Volatile organic compounds and carbon monoxide
+* Sulphur dioxide ($SO_2$)
+* Organic compound
+* Amonia
+* Black carbon
+* Percipitation
+* Moisture level
+* Surface level humidity
+* Land-use reflectance and irrigation
+* Aviation contrails
+* Costal flood
+* Infrared energy emitted from earth surface
+* Spectral bands/wavelenthds
+* Ocean acidity
+* Ocean salinity
+* Ice sheet mass
+* Ocean oxygen levels
+* Relativesea level
+* Surface open ocean pH
+
 
 ## Regrid
+A Spatial Reference System Identifier ([SRID](https://en.wikipedia.org/wiki/Spatial_reference_system#Identifier)) is used to specify the projection or lack of projection of geographical spatial data.
+
+Spatial data providers either create their own projection, or use official projections from the European Petroleum Survey Group ([EPSG](https://en.wikipedia.org/wiki/EPSG_Geodetic_Parameter_Dataset)) or the Environmental Systems Research Institute ([Esri](https://en.wikipedia.org/wiki/Esri)).
+
+These projections define the coordinate system, and thus, data must be converted into the same grid in order to be used together.
+
 **Final Grid:**
+While there are many grids to choose from, one with high accuracy (up to 1 meter for the whole world) is a common one we will convert our data to. This grid has the SRID [WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84) and is used by the Global Positioning System. Additional [reference](https://epsg.io/6933).
 
 ## Temporal Resolution
 **Possible Temporal Resolutions:** Minutes, Hourly, Daily, Monthly, Yearly, 

@@ -8,6 +8,8 @@ There is a lot of different data repositories available that we can use to get d
 * [CDS](https://cds.climate.copernicus.eu)
 * [AMRDC](https://amrdcdata.ssec.wisc.edu)
 * [Artic Data Center](https://arcticdata.io)
+* [ESDS](https://earthdata.nasa.gov_)
+* [SENTINEL](https://sentinels.copernicus.eu/web/sentinel/home)
 
 ## Types of Datasets
 

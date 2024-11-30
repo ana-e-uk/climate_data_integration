@@ -6,7 +6,7 @@ This repository contains Ana Uribe and Nithya Nurikinati's final project code an
 
 We hope to create a Python-based software to integrate climate science data.
 
-**Motivation:** Climate data is collected by different organizations ([NASA](https://science.nasa.gov/earth/), [ECMWF](https://www.ecmwf.int), etc.)and instruments ([ARIS](https://airs.jpl.nasa.gov), [MODIS](https://modis.gsfc.nasa.gov/about/)), so multiple entities could collect for a given spatial ($S$) and temporal range ($T$):
+**Motivation:** Climate data is collected by different organizations ([NASA](https://science.nasa.gov/earth/), [ECMWF](https://www.ecmwf.int), etc.)and instruments such as satellites, so multiple entities could collect for a given spatial ($S$) and temporal range ($T$):
 * The exact same data at the same time and location within $S$ and $T$.
 * The exact same data at different time intervals and/or different locations within $S$ and $T$.
 * Similar or related data at the same or different time and location within $S$ and $T$.
@@ -29,8 +29,72 @@ The following steps outline our plan to integrate various datasets in a comprehe
 7. *Join Similar Data:* Data may not be the same but may be useful to have together, such as the u component of the wind and the v component of the wind.
 8. *Provide Metadata:* For the integrated data, provide useful metadata that keeps track of where data came from, the extent of information, aggregation methods, etc..
 
----
-**More documentation on the data used, evaluation methods, and best practices in the `docs/` folder. Additionally, how to setup the environment, dependencies, guidelines for contributing, and detalis about the API and CLI are also in this folder.**
+# Best Practices
+
+Below are the descriptions of the current best practices in the climate/earth science research community for the varying steps of the pipeline.
+
+## General Resources
+
+The following resources discuss the physical sciences of climate science. This will be useful to get a general idea of the data that is necessary and useful for climate scientists.
+
+* Intergovernmental Panel on Climate Change Sixth Assesment [Report](https://www.ipcc.ch/report/ar6/wg1/) gives an overview of the science driving climate change.
+* Encyclopedia of Earth Weather and Climate [Tab](https://editors.eol.org/eoearth/wiki/Weather_%26_Climate) defines various aspects of the weather and climate.
+
+The following resources are to get an idea of the best practices of each of our steps.
+
+* Practical Guide to Climate Econometrics [Introduction](https://climateestimate.net/content/getting-started.html) gives a good introduction into finding and using weather data, common file formats in the field, etc..
+* The Spatio-Temporal-Access-Catalog [Index](https://stacspec.org/en) is a specification that provides an API, datasets, etc. that allows data to be handled which we can look at for an example of how to code our software.
+* The odc-stac python function [documentation](https://odc-stac.readthedocs.io/en/latest/intro.html) gives an example of an existing python software that helps analyze Sentinel 2 [data](https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2).
+* Learning the Earth with Artificial Intelligence and Physics [LEAP](https://leap.columbia.edu) is an NSF science and technology center for integrating physical models and machine learning for climate science. Its documentation may help us to determine how data is best integrated for use in ML, climate science, and data science.
+* Earthaccess python [library](https://www.earthdata.nasa.gov/news/blog/earthaccess-earth-science-data-simplified) is NASA's python library for helping users work with their data, which is the type of data we are interested in integrating with others.
+* U.S. Antarctic Program Data [Center]() documents, preserves, and disseminates data from Antarctica, which can be a good example for us in terms of documentation.
+
+## Unifying Format
+**Data Format Options:** netcdf, Json, ...
+
+**Final Data Format:**
+
+## Variable Matching
+**Common Variables:** temperature, percipitation, ...
+
+**Expected Variables Set:** 
+
+## Regrid
+**Final Grid:**
+
+## Temporal Resolution
+**Possible Temporal Resolutions:** Minutes, Hourly, Daily, Monthly, Yearly, 
+
+## Data Deduplication
+**Current Practice:**
+
+## Data Joining
+**Data to store together:**
+* U component of wind, V component of wind as tuple: `[u, v]`
+
+## Dataset Metadata
+
+
+# Data Documentation
+
+There is a lot of different data repositories available that we can use to get data and show our integration methods. There are also different types of datasets, some of which generate the others, and thus should not be "re-aggregated". Thus, we will have to determine what to do when "combining/unifying/integrating" these different types of datasets.
+
+## Data Repositories List
+
+* [NOAA](https://psl.noaa.gov/data/gridded/)
+* [CDS](https://cds.climate.copernicus.eu)
+* [AMRDC](https://amrdcdata.ssec.wisc.edu)
+* [Artic Data Center](https://arcticdata.io)
+
+## Types of Datasets
+
+* Analysis (data in database from sources)
+* Reanalysis (weather observations + computer model = global weather)
+* Forecast (historical data → future predictions)
+* Reforecast (reanalysis → “future” predictions)
+* Climate simulation (science + factors = scenarios)
+
+## Datasets
 
 ## Repository Layout
 
