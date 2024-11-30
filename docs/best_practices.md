@@ -59,7 +59,7 @@ The following resources are to get an idea of the best practices of each of our 
 * Surface open ocean pH
 
 
-## Regrid
+## Grid Data
 A Spatial Reference System Identifier ([SRID](https://en.wikipedia.org/wiki/Spatial_reference_system#Identifier)) is used to specify the projection or lack of projection of geographical spatial data.
 
 Spatial data providers either create their own projection, or use official projections from the European Petroleum Survey Group ([EPSG](https://en.wikipedia.org/wiki/EPSG_Geodetic_Parameter_Dataset)) or the Environmental Systems Research Institute ([Esri](https://en.wikipedia.org/wiki/Esri)).
@@ -68,6 +68,9 @@ These projections define the coordinate system, and thus, data must be converted
 
 **Final Grid:**
 While there are many grids to choose from, one with high accuracy (up to 1 meter for the whole world) is a common one we will convert our data to. This grid has the SRID [WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84) and is used by the Global Positioning System. Additional [reference](https://epsg.io/6933).
+
+[PostGIS](https://postgis.net/docs/ST_Transform.html) Provides a way to transform data from one grid to another. Other databases like [Snowflake](https://docs.snowflake.com/en/sql-reference/functions/st_transform) use this feature to work with their spatial data.
+
 
 ## Temporal Resolution
 **Possible Temporal Resolutions:** Minutes, Hourly, Daily, Monthly, Yearly, 
