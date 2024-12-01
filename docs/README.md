@@ -1,6 +1,6 @@
 # climate_data_integration
 
-This repository contains Ana Uribe and Nithya Nurikinati's final project code and documentation for CSCI 8735: Advanced Database Systems (Fall 2024).
+This repository contains Ana Uribe and Nithya Murikinati's final project code and documentation for CSCI 8735: Advanced Database Systems (Fall 2024).
 
 ## Introduction
 
