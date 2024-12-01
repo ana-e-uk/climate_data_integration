@@ -69,7 +69,11 @@ These projections define the coordinate system, and thus, data must be converted
 **Final Grid:**
 While there are many grids to choose from, one with high accuracy (up to 1 meter for the whole world) is a common one we will convert our data to. This grid has the SRID [WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84) and is used by the Global Positioning System. Additional [reference](https://epsg.io/6933).
 
+**Tools:**
 [PostGIS](https://postgis.net/docs/ST_Transform.html) Provides a way to transform data from one grid to another. Other databases like [Snowflake](https://docs.snowflake.com/en/sql-reference/functions/st_transform) use this feature to work with their spatial data.
+
+There are also packages that help 
+
 
 
 ## Temporal Resolution
