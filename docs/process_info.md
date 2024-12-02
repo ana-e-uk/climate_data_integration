@@ -1,6 +1,8 @@
-# Best Practices
+# Process Information
 
-Below are the descriptions of the current best practices in the climate/earth science research community for the varying steps of the pipeline.
+Below are some resources and notes about each process of the pipeline that helped us find our project scope.
+
+<!-- Below are the descriptions of the current best practices in the climate/earth science research community for the varying steps of the pipeline. -->
 
 ## General Resources
 
@@ -9,7 +11,7 @@ The following resources discuss the physical sciences of climate science. This w
 * Intergovernmental Panel on Climate Change Sixth Assesment [Report](https://www.ipcc.ch/report/ar6/wg1/) gives an overview of the science driving climate change.
 * Encyclopedia of Earth Weather and Climate [Tab](https://editors.eol.org/eoearth/wiki/Weather_%26_Climate) defines various aspects of the weather and climate.
 
-The following resources are to get an idea of the best practices of each of our steps.
+The following resources are to get an idea of the best practices of each part of the integration and deduplication pipeline.
 
 * Practical Guide to Climate Econometrics [Introduction](https://climateestimate.net/content/getting-started.html) gives a good introduction into finding and using weather data, common file formats in the field, etc..
 * The Spatio-Temporal-Access-Catalog [Index](https://stacspec.org/en) is a specification that provides an API, datasets, etc. that allows data to be handled which we can look at for an example of how to code our software.
@@ -19,13 +21,15 @@ The following resources are to get an idea of the best practices of each of our 
 * U.S. Antarctic Program Data [Center]() documents, preserves, and disseminates data from Antarctica, which can be a good example for us in terms of documentation.
 
 ## Unifying Format
-**Data Format Options:** netcdf, Json, ...
+**Common Data Formats:**
+* netcdf
+* Json
+* csv
 
 **Final Data Format:**
+netcdf
 
 ## Variable Matching
-**Common Variables:** temperature, percipitation, ...
-
 **Expected Variables Set from Intergovernmental Panel on Climate Change Sixth Assesment:** 
 * Carbon dioxide ($CO_2$)
 * Methane ($CH_4$)
@@ -71,10 +75,6 @@ While there are many grids to choose from, one with high accuracy (up to 1 meter
 
 **Tools:**
 [PostGIS](https://postgis.net/docs/ST_Transform.html) Provides a way to transform data from one grid to another. Other databases like [Snowflake](https://docs.snowflake.com/en/sql-reference/functions/st_transform) use this feature to work with their spatial data.
-
-There are also packages that help 
-
-
 
 ## Temporal Resolution
 **Possible Temporal Resolutions:** Minutes, Hourly, Daily, Monthly, Yearly, 
