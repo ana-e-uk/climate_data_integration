@@ -50,14 +50,16 @@ Below we describe the pipeline our project will fit into.
 
 ## Repository Layout
 
+Note this repository is set up to hold the full data integration pipeline, so not all the files will be filled for this project. The files that are used for this project have a `<-- PROJECT` to the right of the file name and description.
+
     project-root/
-    ├── data/
+    ├── data/                         <-- PROJECT
     │   ├── raw/                      # Store raw incoming data files
     │   ├── processed/                # Store processed data files
     │   └── metadata/                 # Store metadata files
     ├── src/
     │   ├── pipeline.py               # Main pipeline function
-    │   ├── unify_format.py           # Step 1 function of Data Integration Plan
+    │   ├── unify_format.py           # Step 1 function of Data Pipeline
     │   ├── variable_matching.py      # Step 2 function      <-- PROJECT
     │   ├── regrid.py                 # Step 3 function
     │   ├── temporal_resolution.py    # Step 4 function
@@ -67,32 +69,33 @@ Below we describe the pipeline our project will fit into.
     │   └── utils.py                  # Common utilities     <-- PROJECT
     ├── notebooks/                    # Jupyter notebooks for testing and visualization
     ├── tests/
-    │   ├── test_unify_format.py
-    │   ├── test_variable_matching.py
+    │   ├── test_unify_format.py        
+    │   ├── test_variable_matching.py               <-- PROJECT
     │   ├── test_regrid.py
     │   ├── test_temporal_resolution.py
-    │   ├── test_deduplicate.py
-    │   ├── test_data_joining.py
-    │   └── test_metadata_generator.py
+    │   ├── test_deduplicate.py                     <-- PROJECT
+    │   ├── test_data_joining.py                    <-- PROJECT
+    │   └── test_metadata_generator.py              <-- PROJECT
     ├── docs/
-    │   ├── README.md                 # Overview of the project
+    │   ├── README.md                 # Overview of the project         <-- PROJECT
     │   ├── CONTRIBUTING.md           # Guidelines for contributing
-    │   ├── requirements.txt          # Dependencies
-    │   ├── setup.md                  # Instructions to set up the environment
+    │   ├── requirements.txt          # Dependencies                    <-- PROJECT
+    │   ├── setup.md                  # Instructions to set up the environment  <-- PROJECT
     │   ├── API.md                    # Details about the API and CLI
-    │   ├── best_practices.md         # Description of each step
-    │   ├── data.md                   # Overview of the data used
-    │   └── evaluation.md             # Description of the evaluation of each step
+    │   ├── process_info.md           # Description of each step        <-- PROJECT
+    │   ├── data.md                   # Overview of the data used       <-- PROJECT
+    │   └── evaluation.md             # Description of the evaluation of each step  <-- PROJECT
     ├── config/
     │   ├── variable_mapping.json     # Configuration for variable matching
     │   ├── grid_config.yaml          # Configuration for re-gridding
-    │   ├── metadata_template.yaml    # Metadata structure template
-    │   └── config.yaml               # General project configuration
+    │   ├── metadata_template.yaml    # Metadata structure template     <-- PROJECT
+    │   └── config.yaml               # General project configuration   <-- PROJECT
     ├── scripts/
-    │   ├── integrate_data.py         # Script to run the full data processing pipeline
-    │   ├── preprocess_data.sh        # Example shell script for data preprocessing
-    │   └── analyze_output.sh         # Example script for analyzing outputs
-    └── .gitignore
+    |   ├── deduplicate_data.py       # Script to run the data deduplication        <-- PROJECT
+    │   ├── integrate_data.py         # Script to run the full data integration pipeline
+    │   ├── preprocess_data.sh        # Example shell script for data processing
+    │   └── analyze_output.sh         # Example script for analyzing outputs        <-- PROJECT
+    └── .gitignore      <-- PROJECT
 <!-- └── .github/
         ├── workflows/
         │   └── ci.yml                # Continuous Integration workflow

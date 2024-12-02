@@ -1,6 +1,7 @@
 # Data Documentation
 
-There is a lot of different data repositories available that we can use to get data and show our integration methods. There are also different types of datasets, some of which generate the others, and thus should not be "re-aggregated". Thus, we will have to determine what to do when "combining/unifying/integrating" these different types of datasets.
+<!-- There is a lot of different data repositories available that we can use to get data and show our integration methods. There are also different types of datasets, some of which generate the others, and thus should not be "re-aggregated". Thus, we will have to determine what to do when "combining/unifying/integrating" these different types of datasets. -->
+There are a lot of different climate data repositories. Below is a general overview of the climate science data landscape, and then the specific data we used to test our deduplication methods.
 
 ## Data Repositories List
 
@@ -19,4 +20,4 @@ There is a lot of different data repositories available that we can use to get d
 * Reforecast (reanalysis → “future” predictions)
 * Climate simulation (science + factors = scenarios)
 
-## Datasets
+## Data Used
