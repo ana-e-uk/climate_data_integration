@@ -79,7 +79,6 @@ Note this repository is set up to hold the full data integration pipeline, so no
     ├── docs/
     │   ├── README.md                 # Overview of the project         <-- PROJECT
     │   ├── CONTRIBUTING.md           # Guidelines for contributing
-    │   ├── requirements.txt          # Dependencies                    <-- PROJECT
     │   ├── setup.md                  # Instructions to set up the environment  <-- PROJECT
     │   ├── API.md                    # Details about the API and CLI
     │   ├── process_info.md           # Description of each step        <-- PROJECT
@@ -95,7 +94,9 @@ Note this repository is set up to hold the full data integration pipeline, so no
     │   ├── integrate_data.py         # Script to run the full data integration pipeline
     │   ├── preprocess_data.sh        # Example shell script for data processing
     │   └── analyze_output.sh         # Example script for analyzing outputs        <-- PROJECT
+    ├── requirements.txt              # Dependencies      <-- PROJECT
     └── .gitignore      <-- PROJECT
+
 <!-- └── .github/
         ├── workflows/
         │   └── ci.yml                # Continuous Integration workflow
