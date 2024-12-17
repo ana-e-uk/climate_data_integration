@@ -178,36 +178,26 @@ COBE-SST 2 and Sea Ice data provided by the NOAA PSL, Boulder, Colorado, USA, fr
 
 ## Repository Layout
 
-Note this repository is set up to hold the full data integration pipeline, so not all the files will be filled for this project. The files that are used for this project have a `<-- PROJECT` to the right of the file name and description.
-
     project-root/
-    ├── data/                         <-- PROJECT
+    ├── data/                      
     │   ├── raw/                      # Store raw incoming data files
     │   ├── processed/                # Store processed data files
     │   └── metadata/                 # Store metadata files
     ├── src/
     │   ├── pipeline.py               # Main pipeline function
-    │   ├── unify_format.py           # Step 1 function of Data Pipeline
-    │   ├── variable_matching.py      # Step 2 function      <-- PROJECT
-    │   ├── regrid.py                 # Step 3 function
-    │   ├── temporal_resolution.py    # Step 4 function
-    │   ├── deduplicate.py            # Step 5 & 6 function  <-- PROJECT
-    │   ├── data_joining.py           # Step 7 function      <-- PROJECT
-    │   ├── metadata_generator.py     # Step 8 function      <-- PROJECT
-    │   └── utils.py                  # Common utilities     <-- PROJECT
+    │   ├── unify_format.py           
+    │   ├── variable_matching.py     
+    │   ├── temporal_resolution.py    
+    │   ├── config.py                
+    │   ├── match.py                  
+    │   └── utils.py                  # Common utilities
     ├── notebooks/                    # Jupyter notebooks for testing and visualization
     ├── tests/
     │   ├── test_unify_format.py        
-    │   ├── test_variable_matching.py               <-- PROJECT
-    │   ├── test_regrid.py
+    │   ├── test_variable_matching.py 
     │   ├── test_temporal_resolution.py
-    │   ├── test_deduplicate.py                     <-- PROJECT
-    │   ├── test_data_joining.py                    <-- PROJECT
-    │   └── test_metadata_generator.py              <-- PROJECT
     ├── scripts/
-    |   ├── deduplicate_data.py       # Script to run the data deduplication        <-- PROJECT
     │   ├── integrate_data.py         # Script to run the full data integration pipeline
-    │   ├── preprocess_data.sh        # Example shell script for data processing
     │   └── analyze_output.sh         # Example script for analyzing outputs        <-- PROJECT
     ├── requirements.txt              # Dependencies      <-- PROJECT
     ├── README.md                     # Overview of the project         <-- PROJECT

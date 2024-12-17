@@ -2,6 +2,8 @@
 Constants and file paths
 """
 
+MANAGE = "aggregate"    # "mean", "max", "weigthed"
+
 parameters = {
                 "format": "netcdf"
 
