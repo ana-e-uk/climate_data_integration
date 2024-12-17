@@ -17,18 +17,15 @@ def integration_pipeline(input_data, config):
         integrated_data: Final integrated dataset.
         metadata: Metadata for the integrated data.
     """
+    standardized_data = match_variables(input_data, config.standard_col_names)
+
     unified_data_list = []
 
-    for data in input_data:
-        # Step 1: Unify data format to netcdf
-        # Step 3: Unify grid of datasets to [WGS 84]
+    for data in standardized_data:
         unified_data, grid_type = unify_data_format(data)
         print(f"File: {data} \tGrid type: {grid_type}")
         
         unified_data_list.append(unified_data)
-
-    # Step 2: Match variables
-    standardized_data = match_variables(unified_data_list)
 
     # Step 4: Consolidate time resolution
     time_consistent_data = consolidate_time_resolution(standardized_data)

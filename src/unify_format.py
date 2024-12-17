@@ -29,7 +29,7 @@ def check_grid(nc_file):
         nc_file (str): Path to the NetCDF file.
         
     Returns:
-        
+        grid mapping name (str)
     """
     try:
         ds = xr.open_dataset(nc_file)
