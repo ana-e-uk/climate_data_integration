@@ -4,7 +4,9 @@ Perform spatial re-gridding or handle un-gridded data separately.
 Use tools like xarray and xarray_regrid.
 """
 
-def regrid_data(input_data, grid_config):
+from config import standard_col_names
+
+def regrid_data(input_data):
     """
     Regrid data that is not in the desired grid.
 

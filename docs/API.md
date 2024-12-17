@@ -1,1 +1,0 @@
-# Details about the API and CLI

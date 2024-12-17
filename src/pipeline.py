@@ -23,14 +23,14 @@ def integration_pipeline(input_data, config):
     regridded_data = []
 
     for data in input_data:
-        # Step 1: Unify data format
-        unified_data = unify_data_format(data, config.get("format"))
+        # Step 1: Unify data format to netcdf
+        unified_data = unify_data_format(data)
 
-        # Step 3: Re-grid data
-        regridded_data.append(regrid_data(unified_data, config.get("grid")))
+        # Step 3: Re-grid data to [WGS 84]
+        regridded_data.append(regrid_data(unified_data))
 
     # Step 2: Match variables
-    standardized_data = match_variables(regridded_data, config.get("variable_mapping"))
+    standardized_data = match_variables(regridded_data)
 
     # Step 4: Consolidate time resolution
     time_consistent_data = consolidate_time_resolution(standardized_data, config.get("time"))

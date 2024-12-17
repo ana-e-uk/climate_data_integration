@@ -34,9 +34,9 @@ def unify_data_format(input_data, format_config):
     """
     # If input is a CSV, convert to NetCDF
     if input_data.endswith(".csv"):
-        unified_data = convert_csv_to_netcdf(input_data, format_config["csv"])
+        unified_data = convert_csv_to_netcdf(input_data)
     elif input_data.endswith(".json"):
-        unified_data = convert_json_to_netcdf(input_data, format_config["json"])
+        unified_data = convert_json_to_netcdf(input_data)
     
     # Add more cases for different data formats
 
