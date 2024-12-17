@@ -11,18 +11,17 @@ We hope to create a Python-based software to help integrate climate science data
 * The exact same data at different time intervals and/or different locations within $S$ and $T$.
 * Similar or related data at the same or different time and location within $S$ and $T$.
 
-Unifying these various datasets can help scientists analyze the region $S$ or time range $T$ of interest with all the available data. Many climate scientists are using various datasets, or 'multi-source' data, to answer specific questions or for training models to predict things like weather or sea-level temperature. A pipeline that can do this integration will help streamline this process. Our project will focus on deduplicating data within files, which is one aspect of this pipeline.
+Unifying these various datasets can help scientists analyze the region $S$ or time range $T$ of interest with all the available data. Many climate scientists are using various datasets, or 'multi-source' data, to answer specific questions or for training models to predict things like weather or sea-level temperature. A pipeline that can do this integration will help streamline this process. Our project will focus on integration between files, which is one aspect of this pipeline.
 
 <!-- Thus, given several datasets, our software will return integrated (unified) data and corresponding metadata. -->
-Thus, given a set of files, our software will relturn the deduplicated files, and some metadata describing the deduplication process. We assume the set of files are of the same file type and the same spatial and temporal range and intervals (i.e., the values are sampled in the same location at the same time).
+Thus, given a set of files, our project will find the data that overlaps in time and space, consolidate it, and return the updated files. Additionally, it will provide some metadata describing the integration process. We assume the set of files are of the same file type and the same spatial and temporal range and intervals (i.e., values are sampled in the same location at the same time).
 
 **Project Contributions:**
 
-* File deduplication: column-matching, duplicate aggregation, deletion, statistics.
-* Deduplication metadata: information about deduplicated data such as the amount of duplicates found, the columns that were merged or deleted etc.
-* File merging: if files or parts of files are duplicates, merge the parts of files and output a different set of files.
+* File integration: column-matching, aggregation, deletion, statistics.
+* Integration metadata: information about deduplicated data such as the amount of duplicates found, the columns that were merged or deleted etc.
 
-Below we describe the pipeline our project will fit into.
+Below we describe the pipeline our project will fit into. The first 4 points are out of the scope of our work but important to understand as given in the process, while the last 3 points are what we are implementing.
 
 **Data Integration Pipeline:** 
 

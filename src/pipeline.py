@@ -26,8 +26,6 @@ def integration_pipeline(input_data, config):
         # Step 1: Unify data format
         unified_data = unify_data_format(data, config.get("format"))
 
-        # Check if data is in desired grid
-
         # Step 3: Re-grid data
         regridded_data.append(regrid_data(unified_data, config.get("grid")))
 
