@@ -6,6 +6,8 @@ Update mappings dynamically for new variables.
 import xarray as xr
 import os
 
+from utils import new_file_path
+
 def convert_col_names(standard_col_names, data):
     """
     Rename the columns (dimensions/variables) of an xarray.Dataset based on a mapping dictionary.
@@ -54,13 +56,7 @@ def match_variables(input_data, standard_col_names):
         # get new dataset with standard col names
         standard_data = convert_col_names(data, standard_col_names)
 
-        # save new dataset
-        directory, file_name = os.path.split(path)
-        parent_directory = os.path.dirname(directory)
-
-        new_folder = "processed"
-        updated_file_path = os.path.join(parent_directory, new_folder, file_name)
-
+        updated_file_path = new_file_path(path, "processed", "st_cols_")
         standard_data.to_netcdf(updated_file_path)
         output_data.append(updated_file_path)
 

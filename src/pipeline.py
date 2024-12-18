@@ -27,7 +27,7 @@ def integration_pipeline(input_data, config):
         unified_data, grid_type = unify_data_format(data)
         print(f"File: {os.path.basename(data)} \tGrid type: {grid_type}")
         
-        time_consistent_data = consolidate_time_resolution(unified_data)
+        time_consistent_data = consolidate_time_resolution(unified_data, config.time_dim)
 
         processed_data_list.append(time_consistent_data)
 

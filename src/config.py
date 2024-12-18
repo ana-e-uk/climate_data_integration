@@ -3,6 +3,7 @@ Constants and file paths
 """
 
 MANAGE = "aggregate"    # "mean", "max", "weigthed"
+time_dim = "datetime"
 
 parameters = {
                 "format": "netcdf"
