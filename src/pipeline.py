@@ -31,11 +31,13 @@ def integration_pipeline(input_data, config):
 
         processed_data_list.append(time_consistent_data)
 
+    overlap_info = find_matches(processed_data_list)
 
-    # Step 5: Find duplicates
-    matches = find_matches(processed_data_list)
-
-    # Step 6: Manage duplicates
-    integrated_data, metadata = manage_matches(matches, config.MANAGE)
+    output_file = ""
+    scaling_factors = ""
+    variable = ""
+    aggregation_func = ""
+    
+    integrated_data, metadata = manage_matches(processed_data_list, output_file, scaling_factors, variable, aggregation_func)
 
     return integrated_data, metadata
