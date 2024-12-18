@@ -192,16 +192,11 @@ COBE-SST 2 and Sea Ice data provided by the NOAA PSL, Boulder, Colorado, USA, fr
     │   ├── match.py                  
     │   └── utils.py                  # Common utilities
     ├── notebooks/                    # Jupyter notebooks for testing and visualization
-    ├── tests/
-    │   ├── test_unify_format.py        
-    │   ├── test_variable_matching.py 
-    │   ├── test_temporal_resolution.py
     ├── scripts/
     │   ├── integrate_data.py         # Script to run the full data integration pipeline
-    │   └── analyze_output.sh         # Example script for analyzing outputs        <-- PROJECT
-    ├── requirements.txt              # Dependencies      <-- PROJECT
-    ├── README.md                     # Overview of the project         <-- PROJECT
-    └── .gitignore      <-- PROJECT
+    ├── requirements.txt              # Dependencies
+    ├── README.md                     # Overview of the project
+    └── .gitignore
 
 <!-- └── .github/
         ├── workflows/
