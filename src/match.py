@@ -7,7 +7,46 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from utils import new_file_path
+'''
+pseudo-code:
+
+for every pair of files:
+
+    get the common region, and the regions where they don't overlap.
+    aggregate the overlapping regions the way we want and append the regions where they don't overlap
+    this will result in one final file that has the union of all the time and location points of all the files,
+    and also gets the file
+
+'''
+
+def get_common_regions(file_1, file_2, time_dim, lat_dim, lon_dim, variable):
+    """
+    Get the overlapping regions (time, latitude, longitude) between two files.
+
+    Parameters:
+        files (list): List of file paths to NetCDF files.
+        time_dim (str): Name of the time dimension.
+        lat_dim (str): Name of the latitude dimension.
+        lon_dim (str): Name of the longitude dimension.
+        variable (str): Variable to compare between files.
+
+    Returns:
+        dict: Overlapping regions for time, latitude, and longitude.
+    """
+    d_1 = xr.open_dataset(file_1)
+    d_2 = xr.open_dataset(file_2)
+
+    # Find the common overlapping indices
+    common_time = d_1[0][time_dim]
+    common_lat = d_1[0][lat_dim]
+    common_lon = d_1[0][lon_dim]
+
+    common_time = np.intersect1d(common_time, d_2[time_dim])
+    common_lat = np.intersect1d(common_lat, d_2[lat_dim])
+    common_lon = np.intersect1d(common_lon, d_2[lon_dim])
+
+    return {"time": common_time, "latitude": common_lat, "longitude": common_lon}
+
 
 def find_matches(input_data_paths, time_dim, lat_dim, lon_dim, variable):
     """
