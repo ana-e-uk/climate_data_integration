@@ -7,7 +7,7 @@ import os
 
 import config
 
-def integration_pipeline(input_data, config):
+def integration_pipeline(input_data, output_file, scaling_factors, variable, aggregation_func):
     """
     Orchestrates the data integration pipeline.
 
@@ -33,11 +33,6 @@ def integration_pipeline(input_data, config):
 
     overlap_info = find_matches(processed_data_list)
 
-    output_file = ""
-    scaling_factors = ""
-    variable = ""
-    aggregation_func = ""
-    
     integrated_data, metadata = manage_matches(processed_data_list, output_file, scaling_factors, variable, aggregation_func)
 
-    return integrated_data, metadata
+    # TODO: save integrated data and metadata

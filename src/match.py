@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import config
 '''
 pseudo-code:
 
@@ -24,7 +25,7 @@ def get_common_regions(file_1, file_2, time_dim, lat_dim, lon_dim, variable):
     Get the overlapping regions (time, latitude, longitude) between two files.
 
     Parameters:
-        files (list): List of file paths to NetCDF files.
+        file_1, file_2 (list): List of file paths to NetCDF files.
         time_dim (str): Name of the time dimension.
         lat_dim (str): Name of the latitude dimension.
         lon_dim (str): Name of the longitude dimension.
@@ -66,26 +67,22 @@ def find_matches(input_data_paths, time_dim, lat_dim, lon_dim, variable):
     input_data = [os.path.basename(f) for f in input_data_paths]
     overlap_info = {}
 
+    aggregated_data = 
+
     for i, ds1 in enumerate(datasets):
         for j, ds2 in enumerate(datasets[i+1:], start=i+1):
-            # Find overlapping indices
-            common_time = np.intersect1d(ds1[time_dim], ds2[time_dim])
-            common_lat = np.intersect1d(ds1[lat_dim], ds2[lat_dim])
-            common_lon = np.intersect1d(ds1[lon_dim], ds2[lon_dim])
 
-            overlap_info[f"{input_data[i]} & {input_data[j]}"] = {
-                "time_overlap": len(common_time),
-                "lat_overlap": len(common_lat),
-                "lon_overlap": len(common_lon),
-                "total_overlap": len(common_time) * len(common_lat) * len(common_lon)
-            }
+            d = get_common_regions(input_data[i], input_data[j], config.time_dim, config.lat_dim, config.lon_dim, variable)
+
+            overlap_info[f"{input_data[i]} & {input_data[j]}"] = d
+
 
             # Select overlapping data
             data1 = ds1[variable].sel(
-                {time_dim: common_time, lat_dim: common_lat, lon_dim: common_lon}
+                {time_dim: d["time"], lat_dim: d["latitude"], lon_dim: d["longitude"]}
             ).values.flatten()
             data2 = ds2[variable].sel(
-                {time_dim: common_time, lat_dim: common_lat, lon_dim: common_lon}
+                {time_dim: d["time"], lat_dim: d["latitude"], lon_dim: d["longitude"]}
             ).values.flatten()
 
             # Plot histogram and boxplot for comparison
