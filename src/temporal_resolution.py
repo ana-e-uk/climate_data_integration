@@ -3,12 +3,11 @@ Detect and standardize temporal resolutions across datasets.
 
 Add metadata annotations about the resolution.
 """
-def consolidate_time_resolution(input_data, time_config):
+def consolidate_time_resolution(input_data):
     """
-    Determine the time resolution.
+    Standardize time resolution to monthly.
 
     Arg:
-        input_data:
-        time_config:
+        input_data: An input dataset in file path format.
     """
-    # Find all temporal resolutions
+    

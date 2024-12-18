@@ -72,10 +72,10 @@ def unify_data_format(input_data):
 
     Args:
         input_data: An input dataset in file path format.
-        format_config: Configuration for format conversion.
 
     Returns:
         unified_data: Dataset file path in the unified format.
+        grid_type: String that denotes the grid type information.
     """
     # Convert to same format
     if input_data.endswith(".csv"):
