@@ -8,7 +8,7 @@ import os
 
 from src.utils import new_file_path
 
-def convert_col_names(standard_col_names, data):
+def convert_col_names(data, standard_col_names):
     """
     Rename the columns (dimensions/variables) of an xarray.Dataset based on a mapping dictionary.
     
