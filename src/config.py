@@ -20,6 +20,6 @@ standard_col_names = {
                         "temperature": ["temperature", "Temperature", "Temp", "temp"],
                         "latitude": ["latitude", "Latitude", "lat", "Lat"],
                         "longitude": ["longitude", "Longitude", "long", "Long", "lon", "Lon"],
-                        "sea_ice_temp": ["sea_ice_temp", "icec", "sic"]
+                        "sea_ice_conc": ["sea_ice_conc", "icec", "sic"]
 
 }
