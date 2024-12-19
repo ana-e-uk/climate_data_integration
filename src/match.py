@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import config
 '''
 pseudo-code:
 
@@ -19,136 +18,108 @@ for every pair of files:
     and also gets the file
 
 '''
+import xarray as xr
+import numpy as np
 
-def get_common_regions(file_1, file_2, time_dim, lat_dim, lon_dim, variable):
+def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregation_func, time_dim, lat_dim, lon_dim, variable):
     """
-    Get the overlapping regions (time, latitude, longitude) between two files.
-
-    Parameters:
-        file_1, file_2 (list): List of file paths to NetCDF files.
+    Aggregate and merge a list of NetCDF files into one file, considering overlapping regions.
+    Saves the merged dataset to 'output_file'.
+    
+    Args:
+        file_list (list): List of file paths to NetCDF files.
+        scaling_factors (list): List of scaling factors (floats) corresponding to the list of files.
+        output_file (str): Path to save the final merged NetCDF file.
+        aggregation_func (str): Aggregation function for overlapping regions ("mean", "min", "max", "sum").
         time_dim (str): Name of the time dimension.
         lat_dim (str): Name of the latitude dimension.
         lon_dim (str): Name of the longitude dimension.
-        variable (str): Variable to compare between files.
-
-    Returns:
-        dict: Overlapping regions for time, latitude, and longitude.
-    """
-    d_1 = xr.open_dataset(file_1)
-    d_2 = xr.open_dataset(file_2)
-
-    # Find the common overlapping indices
-    common_time = d_1[0][time_dim]
-    common_lat = d_1[0][lat_dim]
-    common_lon = d_1[0][lon_dim]
-
-    common_time = np.intersect1d(common_time, d_2[time_dim])
-    common_lat = np.intersect1d(common_lat, d_2[lat_dim])
-    common_lon = np.intersect1d(common_lon, d_2[lon_dim])
-
-    return {"time": common_time, "latitude": common_lat, "longitude": common_lon}
-
-
-def find_matches(input_data_paths, time_dim, lat_dim, lon_dim, variable):
-    """
-    Check if NetCDF input_data overlap in time and space.
-
-    Args:
-        input_data_paths (list): List of file paths to NetCDF input_data.
-        time_dim (str): Name of the time dimension.
-        lat_dim (str): Name of the latitude dimension.
-        lon_dim (str): Name of the longitude dimension.
-        variable (str): Variable to compare between input_data.
+        variable (str): Variable to aggregate and merge.
     
     Returns:
-        dict: A dictionary containing overlapping indices for time and space for each file pair.
+        overlap_info
     """
-    datasets = [xr.open_dataset(f) for f in input_data_paths]
-    input_data = [os.path.basename(f) for f in input_data_paths]
-    overlap_info = {}
-
-    aggregated_data = 
-
-    for i, ds1 in enumerate(datasets):
-        for j, ds2 in enumerate(datasets[i+1:], start=i+1):
-
-            d = get_common_regions(input_data[i], input_data[j], config.time_dim, config.lat_dim, config.lon_dim, variable)
-
-            overlap_info[f"{input_data[i]} & {input_data[j]}"] = d
-
-
-            # Select overlapping data
-            data1 = ds1[variable].sel(
-                {time_dim: d["time"], lat_dim: d["latitude"], lon_dim: d["longitude"]}
-            ).values.flatten()
-            data2 = ds2[variable].sel(
-                {time_dim: d["time"], lat_dim: d["latitude"], lon_dim: d["longitude"]}
-            ).values.flatten()
-
-            # Plot histogram and boxplot for comparison
-            plt.figure(figsize=(12, 6))
-            plt.subplot(1, 2, 1)
-            plt.hist(data1, bins=30, alpha=0.5, label=f"{input_data[i]}")
-            plt.hist(data2, bins=30, alpha=0.5, label=f"{input_data[j]}")
-            plt.legend()
-            plt.title("Histogram of Overlapping Values")
-
-            plt.subplot(1, 2, 2)
-            plt.boxplot([data1, data2], labels=[f"{input_data[i]}", f"{input_data[j]}"])
-            plt.title("Boxplot of Overlapping Values")
-
-            directory, file_name = os.path.split(input_data_paths[i])
-            parent_directory = os.path.dirname(directory)
-            fig_name = os.path.join(parent_directory, "figures", f"{input_data[i]} & {input_data[j]}_overlap.png")
-            plt.savefig(fig_name, dpi=300)
-
-    return overlap_info
-
-def manage_matches(input_data_paths, output_file, scaling_factors, variable, aggregation_func):
-    """
-    Aggregate overlapping data and create a new NetCDF file.
-    
-    Args:
-        input_data_paths (list): List of file paths to NetCDF files.
-        output_file (str): Path to save the aggregated NetCDF file.
-        scaling_factors (list): List of scaling factors for each file.
-        variable (str): Variable to aggregate.
-        aggregation_func (str): Method of aggregation (mean, max, min, sum).
-    
-    Returns:
-        aggregated_data: File path to aggregated data file.
-    """
-    datasets = [xr.open_dataset(f) for f in input_data_paths]
+    # Open the first file to initialize the combined dataset
+    combined_ds = xr.open_dataset(file_list[0])
 
     if scaling_factors is None:
-        scaling_factors = [1] * len(input_data_paths)
-    
-    # Ensure scaling factors match the number of files
-    assert len(scaling_factors) == len(input_data_paths), "Scaling factors must match the number of files."
-    
-    # List to store scaled variables
+        scaling_factors = [1] * len(file_list)
     scaled_data_list = []
 
-    for ds, scale in zip(datasets, scaling_factors):
-        # Scale the variable
-        scaled_data = ds[variable] * scale
-        scaled_data_list.append(scaled_data)
+    overlap_info = {}
+    past_file = os.path.basename(file_list[0])
+    
+    # Loop through the rest of the files
+    for file, scale in zip(file_list[1:], scaling_factors):
+        current_ds = xr.open_dataset(file)
 
-    # Combine all datasets along a new "source" dimension
-    combined_data = xr.concat(scaled_data_list, dim="source")
+        # Rescale variable column values
+        current_ds[variable] = current_ds[variable] * scale
 
-    # Apply the chosen aggregation function along the "source" dimension
-    if aggregation_func == "mean":
-        aggregated_data = combined_data.mean(dim="source")
-    elif aggregation_func == "min":
-        aggregated_data = combined_data.min(dim="source")
-    elif aggregation_func == "max":
-        aggregated_data = combined_data.max(dim="source")
-    elif aggregation_func == "sum":
-        aggregated_data = combined_data.sum(dim="source")
-    else:
-        raise ValueError(f"Unsupported aggregation function: {aggregation_func}. Choose from 'mean', 'min', 'max', 'sum'.")
+        # Find common overlapping regions in all dimensions
+        overlap_time = np.intersect1d(combined_ds[time_dim], current_ds[time_dim])
+        overlap_lat = np.intersect1d(combined_ds[lat_dim], current_ds[lat_dim])
+        overlap_lon = np.intersect1d(combined_ds[lon_dim], current_ds[lon_dim])
 
-    # Save the aggregated data to a new file
-    aggregated_data.to_netcdf(output_file)
-    print(f"Aggregated data saved to {output_file}")
+        overlap_info[f"{past_file} & {os.path.basename(file)}"] = {"time": overlap_time, "latitude": overlap_lat, "longitude": overlap_lon}
+        past_file = os.path.basename(file)
+
+        # Extract overlapping data
+        if overlap_time.size > 0 and overlap_lat.size > 0 and overlap_lon.size > 0:
+            combined_overlap = combined_ds.sel(
+                {time_dim: overlap_time, lat_dim: overlap_lat, lon_dim: overlap_lon}
+            )
+            current_overlap = current_ds.sel(
+                {time_dim: overlap_time, lat_dim: overlap_lat, lon_dim: overlap_lon}
+            )
+            # Concatenate overlapping data along a new dimension for aggregation
+            stacked_overlap = xr.concat(
+                [combined_overlap[variable], current_overlap[variable]],
+                dim="source"
+            )
+
+            # Aggregate the overlapping data
+            if aggregation_func == "mean":
+                aggregated_overlap = stacked_overlap.mean(dim="source")
+            elif aggregation_func == "min":
+                aggregated_overlap = stacked_overlap.min(dim="source")
+            elif aggregation_func == "max":
+                aggregated_overlap = stacked_overlap.max(dim="source")
+            elif aggregation_func == "sum":
+                aggregated_overlap = stacked_overlap.sum(dim="source")
+            else:
+                raise ValueError(f"Unsupported aggregation function: {aggregation_func}")
+        else:
+            aggregated_overlap = None  # No overlap
+
+        # Extract non-overlapping data from each file
+        combined_non_overlap = combined_ds.where(
+            ~combined_ds[time_dim].isin(overlap_time) |
+            ~combined_ds[lat_dim].isin(overlap_lat) |
+            ~combined_ds[lon_dim].isin(overlap_lon),
+            drop=True,
+        )
+        current_non_overlap = current_ds.where(
+            ~current_ds[time_dim].isin(overlap_time) |
+            ~current_ds[lat_dim].isin(overlap_lat) |
+            ~current_ds[lon_dim].isin(overlap_lon),
+            drop=True,
+        )
+
+        # Combine aggregated overlap with non-overlapping regions
+        merged = xr.Dataset()
+        if aggregated_overlap is not None:
+            merged[variable] = aggregated_overlap
+        if combined_non_overlap[variable].size > 0:
+            merged = xr.merge([merged, combined_non_overlap])
+        if current_non_overlap[variable].size > 0:
+            merged = xr.merge([merged, current_non_overlap])
+
+        # Update the combined dataset for the next iteration
+        combined_ds = merged
+
+    # Save the final merged dataset to a NetCDF file
+    combined_ds.to_netcdf(output_file)
+    print(f"Merged file saved to {output_file}")
+
+    return overlap_info
