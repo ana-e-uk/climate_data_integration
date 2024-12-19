@@ -1,7 +1,7 @@
 from src.unify_format import unify_data_format
 from src.variable_matching import match_variables
 from src.temporal_resolution import consolidate_time_resolution
-from src.match import aggregate_and_merge_files
+from src.match import aggregate_overlaps
 
 import os
 
@@ -31,7 +31,7 @@ def integration_pipeline(input_data, output_file, scaling_factors, variable, agg
 
         processed_data_list.append(time_consistent_data)
 
-    aggregate_and_merge_files(file_list=processed_data_list, 
+    aggregate_overlaps(file_list=processed_data_list, 
                               scaling_factors=scaling_factors, 
                               output_file=output_file, 
                               aggregation_func=aggregation_func, 
