@@ -27,7 +27,7 @@ def integration_pipeline(input_data, output_file, scaling_factors, variable, agg
         unified_data, grid_type = unify_data_format(data)
         print(f"File: {os.path.basename(data)} \tGrid type: {grid_type}")
         
-        time_consistent_data = consolidate_time_resolution(unified_data, config.time_dim)
+        time_consistent_data = consolidate_time_resolution(unified_data)
 
         processed_data_list.append(time_consistent_data)
 
@@ -35,8 +35,8 @@ def integration_pipeline(input_data, output_file, scaling_factors, variable, agg
                               scaling_factors=scaling_factors, 
                               output_file=output_file, 
                               aggregation_func=aggregation_func, 
-                              time_dim=config.time_dim, 
-                              lat_dim=config.lat_dim, 
-                              lon_dim=config.lon_dim, 
+                              time_dim=config.TIME, 
+                              lat_dim=config.LAT, 
+                              lon_dim=config.LONG, 
                               variable=variable)
     

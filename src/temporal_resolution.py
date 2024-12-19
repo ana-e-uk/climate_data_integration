@@ -8,7 +8,9 @@ import pandas as pd
 
 from src.utils import new_file_path
 
-def consolidate_time_resolution(input_data, time_dim):
+import src.config
+
+def consolidate_time_resolution(input_data):
     """
     Standardize time resolution to monthly.
 
@@ -23,7 +25,7 @@ def consolidate_time_resolution(input_data, time_dim):
         ds = xr.open_dataset(input_data)
 
         # Convert the time dimension to a pandas datetime index
-        time_values = pd.to_datetime(ds[time_dim].values)
+        time_values = pd.to_datetime(ds[src.config.TIME].values)
         
         # Calculate the differences between consecutive timestamps
         time_deltas = pd.Series(time_values).diff().dropna()
@@ -50,7 +52,7 @@ def consolidate_time_resolution(input_data, time_dim):
 
     # Resample temporal resolution to monthly
     print(f"\tTemporal resolution: {cur_res}")
-    ds = ds.resample(time_dim = "ME").mean()
+    ds = ds.resample(datetime = "ME").mean()
     
     updated_file_path = new_file_path(input_data, "processed", "monthly_")
     ds.to_netcdf(updated_file_path)

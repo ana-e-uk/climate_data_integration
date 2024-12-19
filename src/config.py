@@ -3,9 +3,9 @@ Constants and file paths
 """
 
 MANAGE = "aggregate"    # "mean", "max", "weigthed"
-time_dim = "datetime"
-lat_dim = "latitude"
-lon_dim = "longitude"
+TIME = "datetime"
+LAT = "latitude"
+LONG = "longitude"
 
 parameters = {
                 "format": "netcdf"
