@@ -1,7 +1,7 @@
 from src.unify_format import unify_data_format
 from src.variable_matching import match_variables
 from src.temporal_resolution import consolidate_time_resolution
-from src.match import find_matches, manage_matches
+from src.match import aggregate_and_merge_files
 
 import os
 
@@ -31,8 +31,12 @@ def integration_pipeline(input_data, output_file, scaling_factors, variable, agg
 
         processed_data_list.append(time_consistent_data)
 
-    overlap_info = find_matches(processed_data_list)
-
-    integrated_data, metadata = manage_matches(processed_data_list, output_file, scaling_factors, variable, aggregation_func)
-
+    overlap_info = aggregate_and_merge_files(file_list=processed_data_list, 
+                                             scaling_factors=scaling_factors, 
+                                             output_file=output_file, 
+                                             aggregation_func=aggregation_func, 
+                                             time_dim=config.time_dim, 
+                                             lat_dim=config.lat_dim, 
+                                             lon_dim=config.lon_dim, 
+                                             variable=variable)
     # TODO: save integrated data and metadata

@@ -4,22 +4,7 @@ Detect and handle duplicate records using user-defined rules (e.g., averaging, r
 import os
 import xarray as xr
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-
-'''
-pseudo-code:
-
-for every pair of files:
-
-    get the common region, and the regions where they don't overlap.
-    aggregate the overlapping regions the way we want and append the regions where they don't overlap
-    this will result in one final file that has the union of all the time and location points of all the files,
-    and also gets the file
-
-'''
-import xarray as xr
-import numpy as np
 
 def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregation_func, time_dim, lat_dim, lon_dim, variable):
     """
@@ -44,14 +29,15 @@ def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregati
 
     if scaling_factors is None:
         scaling_factors = [1] * len(file_list)
-    scaled_data_list = []
 
     overlap_info = {}
+    metadata_info = {}
     past_file = os.path.basename(file_list[0])
     
     # Loop through the rest of the files
     for file, scale in zip(file_list[1:], scaling_factors):
         current_ds = xr.open_dataset(file)
+        cur_file = os.path.basename(file)
 
         # Rescale variable column values
         current_ds[variable] = current_ds[variable] * scale
@@ -61,8 +47,10 @@ def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregati
         overlap_lat = np.intersect1d(combined_ds[lat_dim], current_ds[lat_dim])
         overlap_lon = np.intersect1d(combined_ds[lon_dim], current_ds[lon_dim])
 
-        overlap_info[f"{past_file} & {os.path.basename(file)}"] = {"time": overlap_time, "latitude": overlap_lat, "longitude": overlap_lon}
-        past_file = os.path.basename(file)
+        overlap_info[f"{past_file} & {cur_file}"] = {"time": overlap_time, "latitude": overlap_lat, "longitude": overlap_lon}
+        past_file = cur_file
+
+        metadata_info[f"{past_file} & {cur_file}"] = {"time": len(overlap_time), "latitude": len(overlap_lat), "longitude": len(overlap_lon)}
 
         # Extract overlapping data
         if overlap_time.size > 0 and overlap_lat.size > 0 and overlap_lon.size > 0:
@@ -72,6 +60,21 @@ def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregati
             current_overlap = current_ds.sel(
                 {time_dim: overlap_time, lat_dim: overlap_lat, lon_dim: overlap_lon}
             )
+
+            # Plot histogram and boxplot for comparison
+            # combined_overlap_flat = combined_overlap.values.flatten()
+            # current_overlap_flat = current_overlap.values.flatten()
+            # plt.figure(figsize=(12, 6))
+            # plt.subplot(1, 2, 1)
+            # plt.hist(current_overlap_flat, bins=30, alpha=0.5, label=f"{cur_file}")
+            # plt.hist(combined_overlap_flat, bins=30, alpha=0.5, label=f"{past_file}")
+            # plt.legend()
+            # plt.title("Histogram of Overlapping Values")
+
+            # plt.subplot(1, 2, 2)
+            # plt.boxplot([data1, data2], labels=[f"{files[i]}", f"{files[j]}"])
+            # plt.title("Boxplot of Overlapping Values")
+
             # Concatenate overlapping data along a new dimension for aggregation
             stacked_overlap = xr.concat(
                 [combined_overlap[variable], current_overlap[variable]],
