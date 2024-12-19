@@ -6,7 +6,7 @@ Add metadata annotations about the resolution.
 import xarray as xr
 import pandas as pd
 
-from utils import new_file_path
+from src.utils import new_file_path
 
 def consolidate_time_resolution(input_data, time_dim):
     """

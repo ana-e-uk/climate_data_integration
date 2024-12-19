@@ -31,12 +31,12 @@ def integration_pipeline(input_data, output_file, scaling_factors, variable, agg
 
         processed_data_list.append(time_consistent_data)
 
-    overlap_info = aggregate_and_merge_files(file_list=processed_data_list, 
-                                             scaling_factors=scaling_factors, 
-                                             output_file=output_file, 
-                                             aggregation_func=aggregation_func, 
-                                             time_dim=config.time_dim, 
-                                             lat_dim=config.lat_dim, 
-                                             lon_dim=config.lon_dim, 
-                                             variable=variable)
-    # TODO: save integrated data and metadata
+    aggregate_and_merge_files(file_list=processed_data_list, 
+                              scaling_factors=scaling_factors, 
+                              output_file=output_file, 
+                              aggregation_func=aggregation_func, 
+                              time_dim=config.time_dim, 
+                              lat_dim=config.lat_dim, 
+                              lon_dim=config.lon_dim, 
+                              variable=variable)
+    

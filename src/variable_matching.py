@@ -6,7 +6,7 @@ Update mappings dynamically for new variables.
 import xarray as xr
 import os
 
-from utils import new_file_path
+from src.utils import new_file_path
 
 def convert_col_names(standard_col_names, data):
     """
@@ -51,7 +51,7 @@ def match_variables(input_data, standard_col_names):
     output_data = []
 
     for path in input_data:
-        data = xr.open_dataset(path)
+        data = xr.open_dataset(path, engine="netcdf4")
 
         # get new dataset with standard col names
         standard_data = convert_col_names(data, standard_col_names)

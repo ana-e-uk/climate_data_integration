@@ -2,6 +2,7 @@
 Detect and handle duplicate records using user-defined rules (e.g., averaging, retaining max/min values).
 """
 import os
+import json
 import xarray as xr
 import numpy as np
 import matplotlib.pyplot as plt
@@ -125,4 +126,5 @@ def aggregate_and_merge_files(file_list, scaling_factors, output_file, aggregati
     combined_ds.to_netcdf(output_file)
     print(f"Merged file saved to {output_file}")
 
-    return overlap_info
+    with open(output_file, "w") as file:
+        json.dump(overlap_info, file, indent=4)

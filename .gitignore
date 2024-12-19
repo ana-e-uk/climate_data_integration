@@ -6,8 +6,7 @@ __pycache__/
 .DS_Store
 
 # Data
-data/processed
-data/raw
+data/
 
 # C extensions
 *.so
